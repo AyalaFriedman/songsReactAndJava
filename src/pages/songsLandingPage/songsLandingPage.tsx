@@ -18,7 +18,9 @@ export const SongLandingPage: React.FC = () => {
         price: String
     };
 
-    const [songsList, setSongsList] = useState([]);
+    var array : song[] = [];
+
+    const [songsList, setSongsList] = useState(array);
 
     const getSongsList = async () => {
         try {
@@ -51,9 +53,17 @@ export const SongLandingPage: React.FC = () => {
     }
     const filterByArtist = async (artist: String) => {
         console.log(artist);
-        let data: [];
+        let data: song[];
         data = await getSongsList();
-
+        let artistToFilter = artist.toUpperCase();
+        let temp : song[] = [];
+        for (let i = 0; i < data.length; i++) {
+            let a = data[i].artist;
+            if(a.toUpperCase().indexOf(artistToFilter) > -1) {
+                temp.push(data[i]);
+            }
+        }
+        setSongsList(temp);
     }
 
     useEffect(() => {
