@@ -1,0 +1,14 @@
+.hederRow{
+    background-color: rgb(98, 98, 102);
+    max-width: 70%;
+    text-align: center;
+    height: 50px;
+    padding: 12;
+    margin: auto;
+    border-radius:15px;
+    margin-bottom: 3%;
+}
+
+.title {
+    padding: 10%;
+}

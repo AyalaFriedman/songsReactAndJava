@@ -12,29 +12,36 @@ import PaidIcon from '@mui/icons-material/Paid';
 import { useEffect, useState } from 'react';
 import saveSongApi from '../../api/songs.api';
 import { useNavigate } from 'react-router-dom';
+import { Genre } from '../../models/songModel.model';
+import BackButton from '../../components/backButton/backButton';
 
-export default function AddSong() {
+
+export const AddNewSong: React.FC<{addNewSong:Function}> = (props) => {
+
     const [id, setId] = useState('');
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState('');
-    const [genre, setGenre] = useState('');
-    const [length, setLength] = useState<Number>(0);
-    const [price, setPrice] = useState<Number>(0);
+    const [genre, setGenre] = useState(Genre.CLASSICAL);
+    const [length, setLength] = useState<number>(0);
+    const [price, setPrice] = useState<number>(0);
 
     const navigate = useNavigate();
 
     const saveSong = async () => {
-        const data = await saveSongApi(title, artist, genre, length, price);
+        let song = {
+            title : title,artist : artist, genre : genre,length : length, price : price
+        }
+        const data = props.addNewSong(song);
         console.log(data);
         navigate('/songsList');
     }
 
     useEffect(() => {
         console.log(title, artist, genre, length, price);
-    }, [title,artist,genre,length,price])
+    }, [title, artist, genre, length, price])
 
     return (
-        <div id="body">
+        <>
             <span>Add New Song</span>
             <br />
             <TextField
@@ -72,7 +79,7 @@ export default function AddSong() {
                     id="demo-select-small"
                     value={genre}
                     label="genre"
-                    onChange={(e) => { setGenre(e.target.value) }}
+                    // onChange={(e) => { setGenre(e.target.value) }}
                 >
                     <MenuItem value="">
                         <em>None</em>
@@ -119,6 +126,8 @@ export default function AddSong() {
                     save
                 </Button >
             </Box>
-        </div>
+            <br/>
+            <BackButton></BackButton>
+        </>
     )
 }

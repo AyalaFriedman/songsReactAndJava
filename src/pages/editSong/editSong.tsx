@@ -6,12 +6,13 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate, useLocation } from "react-router-dom";
 import { editSong } from '../../api/songs.api';
+import { Genre, Song } from "../../models/songModel.model";
 
-export default function EditSong() {
+export const EditSong: React.FC<{ editSong: Function }> = (props) => {
 
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState('');
-    const [genre, setGenre] = useState('');
+    const [genre, setGenre] = useState(Genre.CLASSICAL);
     const [length, setLength] = useState<Number>(0);
     const [price, setPrice] = useState<Number>(0);
     const [_id, set_id] = useState<String>('');
@@ -19,27 +20,19 @@ export default function EditSong() {
     const navigate = useNavigate();
 
     const saveEditSong = async (_id: String) => {
-        let editedSong : song;
+        let editedSong: Song;
         editedSong = {
-            _id : _id,
-            title : title,
-            artist : artist,
-            genre : genre,
-            length : length,
-            price : price
+            _id: _id,
+            title: title,
+            artist: artist,
+            genre: genre,
+            length: length,
+            price: price
         }
+        //const response = await props.editSong(editedSong);
         const response = await editSong(editedSong);
         navigate('/songsList');
     }
-
-    type song = {
-        _id: String,
-        title: String,
-        artist: String,
-        genre: String,
-        length: Number,
-        price: Number
-    };
 
     const { state } = useLocation();
 
@@ -96,7 +89,7 @@ export default function EditSong() {
                     id="demo-select-small"
                     value={genre}
                     label="genre"
-                    onChange={(e) => { setGenre(e.target.value) }}
+                // onChange={(e) => { setGenre(e.) }}
                 >
                     <MenuItem value="">
                         <em>None</em>

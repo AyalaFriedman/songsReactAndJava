@@ -1,0 +1,14 @@
+.row{
+    background-color: rgb(120, 120, 241);
+    max-width: 70%;
+    text-align: center;
+    height: 50px;
+    padding: 12;
+    margin: auto;
+    border-radius:15px;
+    margin-bottom: 3%;
+}
+
+.rowData {
+    padding: 7%;
+}
