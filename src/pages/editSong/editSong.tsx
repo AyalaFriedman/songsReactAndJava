@@ -7,6 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate, useLocation } from "react-router-dom";
 import { editSong } from '../../api/songs.api';
 import { Genre, Song } from "../../models/songModel.model";
+import BackButton from "../../components/backButton/backButton";
 
 export const EditSong: React.FC<{ editSong: Function }> = (props) => {
 
@@ -138,6 +139,7 @@ export const EditSong: React.FC<{ editSong: Function }> = (props) => {
                     save
                 </Button >
             </Box>
+            <BackButton></BackButton>
         </div>
     )
 }

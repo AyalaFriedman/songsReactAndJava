@@ -14,7 +14,6 @@ const Row: React.FC<any> = (props: any) => {
 
     const deleteSong = async (id: String) => {
         try {
-            debugger
             const response = await deleteSongApi(id);
             getSongsList();
         }

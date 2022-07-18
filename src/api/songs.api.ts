@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Song, AddSong } from '../models/songModel.model';
 
-export default async function saveSongApi(song : AddSong){
+export default async function saveSongApi(song: AddSong) {
     try {
         const url = 'http://localhost:8080/songs/addSong';
         const response = await fetch(url, {
@@ -15,8 +15,16 @@ export default async function saveSongApi(song : AddSong){
         console.log(data);
         return data;
     }
-    catch (err: any) {
-        console.error(err);
+    catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.log('error message: ', error.message);
+            // 👇️ error: AxiosError<any, any>
+            return error.message;
+        }
+        else {
+            console.log('unexpected error: ', error);
+            return 'An unexpected error occurred';
+        }
     }
 }
 
@@ -38,7 +46,8 @@ export async function editSong(song: Song): Promise<Song | string> {
             console.log('error message: ', error.message);
             // 👇️ error: AxiosError<any, any>
             return error.message;
-        } else {
+        }
+        else {
             console.log('unexpected error: ', error);
             return 'An unexpected error occurred';
         }

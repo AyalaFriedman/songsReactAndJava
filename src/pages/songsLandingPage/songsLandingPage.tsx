@@ -1,8 +1,7 @@
-import { TipsAndUpdates } from "@mui/icons-material";
 import { IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
-import { deleteSongApi, getSongsListApi } from "../../api/songs.api";
+import { getSongsListApi } from "../../api/songs.api";
 import { Song } from '../../models/songModel.model';
 import Title from '../../components/title/title';
 import Row from '../../components/row/row';
@@ -26,22 +25,7 @@ export const SongLandingPage: React.FC = (props) => {
         }
     }
 
-    const deleteSong = async (id: String) => {
-        try {
-            debugger
-            const response = await deleteSongApi(id);
-            getSongsList();
-        }
-        catch (err: any) {
-            console.error(err);
-        }
-    }
-
     let navigate = useNavigate();
-
-    const editSong = (song: any) => {
-        navigate('/editSong', { state: { song } });
-    }
 
     const filterByArtist = async (artist: String) => {
         console.log(artist);
