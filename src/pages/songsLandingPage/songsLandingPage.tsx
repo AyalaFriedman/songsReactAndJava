@@ -7,7 +7,7 @@ import Title from '../../components/title/title';
 import Row from '../../components/row/row';
 import { useNavigate } from "react-router-dom";
 
-export const SongLandingPage: React.FC = (props) => {
+export const SongLandingPage: React.FC = () => {
 
     var array: Song[] = [];
 
